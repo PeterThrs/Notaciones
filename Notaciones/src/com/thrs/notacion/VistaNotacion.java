@@ -14,24 +14,25 @@ import javax.swing.JOptionPane;
  */
 public class VistaNotacion extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VistaNotacion
-     */
     public VistaNotacion() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.panel.setBackground(new Color(233, 245, 219));
+        this.panel.setBackground(new Color(255, 255, 255));
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-    
+
     // Método para definir la precedencia de los operadores
     private int precedence(char op) {
-        if (op == '+' || op == '-') return 1;
-        if (op == '*' || op == '/') return 2;
+        if (op == '+' || op == '-') {
+            return 1;
+        }
+        if (op == '*' || op == '/') {
+            return 2;
+        }
         return 0;
     }
-    
-     // Método para verificar si un carácter es un operador
+
+    // Método para verificar si un carácter es un operador
     private boolean isOperator(char c) {
         return c == '+' || c == '-' || c == '*' || c == '/';
     }
@@ -46,48 +47,31 @@ public class VistaNotacion extends javax.swing.JFrame {
     private void initComponents() {
 
         panel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txInfija = new javax.swing.JTextField();
-        btnPrefija = new javax.swing.JButton();
-        btnPostfija = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         btnLimpiar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txPrefija = new javax.swing.JTextField();
         txPostfija = new javax.swing.JTextField();
         btnSalir = new javax.swing.JButton();
+        btnConvertir = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
-        jLabel1.setText("Conversor de Notacion Infija a Prefija y Postfija");
-
-        jLabel2.setFont(new java.awt.Font("Lucida Console", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel2.setText("Introduce una Notacion: ");
 
         txInfija.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
 
-        btnPrefija.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        btnPrefija.setText("Prefija");
-        btnPrefija.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrefijaActionPerformed(evt);
-            }
-        });
-
-        btnPostfija.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        btnPostfija.setText("Postfija");
-        btnPostfija.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPostfijaActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setFont(new java.awt.Font("Lucida Console", 0, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel3.setText("Notación Prefjia: ");
 
-        btnLimpiar.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        btnLimpiar.setBackground(new java.awt.Color(228, 57, 67));
+        btnLimpiar.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        btnLimpiar.setForeground(new java.awt.Color(255, 255, 255));
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,7 +79,7 @@ public class VistaNotacion extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Lucida Console", 0, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel4.setText("Notación Postfija:");
 
         txPrefija.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -107,7 +91,9 @@ public class VistaNotacion extends javax.swing.JFrame {
 
         txPostfija.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
 
-        btnSalir.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        btnSalir.setBackground(new java.awt.Color(228, 57, 67));
+        btnSalir.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(255, 255, 255));
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,53 +101,80 @@ public class VistaNotacion extends javax.swing.JFrame {
             }
         });
 
+        btnConvertir.setBackground(new java.awt.Color(228, 57, 67));
+        btnConvertir.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        btnConvertir.setForeground(new java.awt.Color(255, 255, 255));
+        btnConvertir.setText("Convertir");
+        btnConvertir.setBorderPainted(false);
+        btnConvertir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConvertirActionPerformed(evt);
+            }
+        });
+
+        jPanel1.setBackground(new java.awt.Color(228, 57, 67));
+
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Conversor de Notacion Infija a Prefija y Postfija");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(128, 128, 128)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jLabel1)
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnLimpiar)
+                .addGap(61, 61, 61)
+                .addComponent(btnSalir)
+                .addGap(208, 208, 208))
             .addGroup(panelLayout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1)
+                .addGap(44, 44, 44)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(39, 39, 39)
+                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txPrefija)
+                            .addComponent(txPostfija, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelLayout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(29, 29, 29)
-                        .addComponent(txInfija))
-                    .addGroup(panelLayout.createSequentialGroup()
-                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnPrefija)
-                            .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)))
-                        .addGap(39, 39, 39)
-                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelLayout.createSequentialGroup()
-                                .addComponent(btnPostfija)
-                                .addGap(44, 44, 44)
-                                .addComponent(btnLimpiar)
-                                .addGap(44, 44, 44)
-                                .addComponent(btnSalir)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(txPrefija)
-                            .addComponent(txPostfija))))
-                .addContainerGap(68, Short.MAX_VALUE))
+                        .addGap(4, 4, 4)
+                        .addComponent(txInfija, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnConvertir)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1)
-                .addGap(65, 65, 65)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txInfija, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPrefija)
-                    .addComponent(btnPostfija)
-                    .addComponent(btnLimpiar)
-                    .addComponent(btnSalir))
-                .addGap(55, 55, 55)
+                    .addComponent(txInfija, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnConvertir))
+                .addGap(66, 66, 66)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txPrefija, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -169,7 +182,11 @@ public class VistaNotacion extends javax.swing.JFrame {
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txPostfija, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addGap(57, 57, 57)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalir)
+                    .addComponent(btnLimpiar))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -186,12 +203,65 @@ public class VistaNotacion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPrefijaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrefijaActionPerformed
+    private void txPrefijaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txPrefijaActionPerformed
+
+    }//GEN-LAST:event_txPrefijaActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        this.txInfija.setText("");
+        this.txPrefija.setText("");
+        this.txPostfija.setText("");
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        JOptionPane.showMessageDialog(null, "Saliendo de la App....");
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void Posfija() {
         String entrada = this.txInfija.getText();
-        if (entrada.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "El campo no puede estar vacío");
-            return;
+
+        StringBuilder resultado = new StringBuilder();
+        Stack<Character> pila = new Stack<>();
+
+        for (int i = 0; i < entrada.length(); i++) {
+            char c = entrada.charAt(i);
+
+            if (Character.isDigit(c) || Character.isLetter(c)) {
+                resultado.append(c);
+            } // Paréntesis de apertura
+            else if (c == '(') {
+                pila.push(c);
+            } // Paréntesis de cierre, desapilar hasta encontrar el paréntesis de apertura
+            else if (c == ')') {
+                while (!pila.isEmpty() && pila.peek() != '(') {
+                    resultado.append(pila.pop());
+                }
+                // Quitar el paréntesis de apertura
+                if (!pila.isEmpty()) {
+                    pila.pop();
+                }
+            } // Si es un operador
+            else if (isOperator(c)) {
+                // Desapilar operadores de mayor o igual precedencia
+                while (!pila.isEmpty() && precedence(pila.peek()) >= precedence(c)) {
+                    resultado.append(pila.pop());
+                }
+                pila.push(c);
+            }
         }
+
+        // Desapilar los operadores restantes
+        while (!pila.isEmpty()) {
+            resultado.append(pila.pop());
+        }
+
+        // Mostrar el resultado en el campo de texto postfija
+        this.txPostfija.setText(resultado.toString());
+    }
+
+    private void Prefija() {
+        String entrada = this.txInfija.getText();
 
         StringBuilder resultado = new StringBuilder();
         StringBuilder inversaEntrada = new StringBuilder(entrada).reverse();
@@ -203,12 +273,10 @@ public class VistaNotacion extends javax.swing.JFrame {
 
             if (Character.isDigit(c) || Character.isLetter(c)) {
                 resultado.append(c);
-            }
-            //parentesis de cierre
+            } //parentesis de cierre
             else if (c == ')') {
                 pila.push(c);
-            }
-            //paréntesis de apertura
+            } //paréntesis de apertura
             else if (c == '(') {
                 while (!pila.isEmpty() && pila.peek() != ')') {
                     resultado.append(pila.pop());
@@ -217,8 +285,7 @@ public class VistaNotacion extends javax.swing.JFrame {
                 if (!pila.isEmpty()) {
                     pila.pop();
                 }
-            }
-            // Si es un operador
+            } // Si es un operador
             else if (isOperator(c)) {
                 // Precedencia de operadores con la pila
                 while (!pila.isEmpty() && precedence(pila.peek()) > precedence(c)) {
@@ -236,83 +303,27 @@ public class VistaNotacion extends javax.swing.JFrame {
         // Invertir el resultado para obtener la notación prefija
         this.txPrefija.setText(resultado.reverse().toString());
 
-    }//GEN-LAST:event_btnPrefijaActionPerformed
+    }
 
-    private void txPrefijaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txPrefijaActionPerformed
-
-    }//GEN-LAST:event_txPrefijaActionPerformed
-
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        this.txInfija.setText("");
-        this.txPrefija.setText("");
-        this.txPostfija.setText("");
-    }//GEN-LAST:event_btnLimpiarActionPerformed
-
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        JOptionPane.showMessageDialog(null, "Saliendo de la App....");
-        System.exit(0);
-    }//GEN-LAST:event_btnSalirActionPerformed
-
-    private void btnPostfijaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostfijaActionPerformed
-        String entrada = this.txInfija.getText();
-
-        if (entrada.isEmpty()) {
+    private void btnConvertirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertirActionPerformed
+        // TODO add your handling code here:
+        if ((this.txInfija.getText()).isEmpty()) {
             JOptionPane.showMessageDialog(null, "El campo no puede estar vacío");
             return;
         }
-
-        StringBuilder resultado = new StringBuilder();
-        Stack<Character> pila = new Stack<>();
-
-        for (int i = 0; i < entrada.length(); i++) {
-            char c = entrada.charAt(i);
-
-            if (Character.isDigit(c) || Character.isLetter(c)) {
-                resultado.append(c);
-            }
-            // Paréntesis de apertura
-            else if (c == '(') {
-                pila.push(c);
-            }
-            // Paréntesis de cierre, desapilar hasta encontrar el paréntesis de apertura
-            else if (c == ')') {
-                while (!pila.isEmpty() && pila.peek() != '(') {
-                    resultado.append(pila.pop());
-                }
-                // Quitar el paréntesis de apertura
-                if (!pila.isEmpty()) {
-                    pila.pop();
-                }
-            }
-            // Si es un operador
-            else if (isOperator(c)) {
-                // Desapilar operadores de mayor o igual precedencia
-                while (!pila.isEmpty() && precedence(pila.peek()) >= precedence(c)) {
-                    resultado.append(pila.pop());
-                }
-                pila.push(c);
-            }
-        }
-
-        // Desapilar los operadores restantes
-        while (!pila.isEmpty()) {
-            resultado.append(pila.pop());
-        }
-
-        // Mostrar el resultado en el campo de texto postfija
-        this.txPostfija.setText(resultado.toString());
-    }//GEN-LAST:event_btnPostfijaActionPerformed
-
+        Posfija();
+        Prefija();
+    }//GEN-LAST:event_btnConvertirActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConvertir;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JButton btnPostfija;
-    private javax.swing.JButton btnPrefija;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel panel;
     private javax.swing.JTextField txInfija;
     private javax.swing.JTextField txPostfija;

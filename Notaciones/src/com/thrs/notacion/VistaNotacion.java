@@ -29,12 +29,15 @@ public class VistaNotacion extends javax.swing.JFrame {
         if (op == '*' || op == '/') {
             return 2;
         }
+        if (op == '^') {
+            return 3;
+        }
         return 0;
     }
 
     // Método para verificar si un carácter es un operador
     private boolean isOperator(char c) {
-        return c == '+' || c == '-' || c == '*' || c == '/';
+        return c == '+' || c == '-' || c == '*' || c == '/' || c == '^';
     }
 
     /**
@@ -220,6 +223,7 @@ public class VistaNotacion extends javax.swing.JFrame {
 
     private void Posfija() {
         String entrada = this.txInfija.getText();
+        entrada = agregarMultiplicacion(entrada);
 
         StringBuilder resultado = new StringBuilder();
         Stack<Character> pila = new Stack<>();
@@ -262,6 +266,7 @@ public class VistaNotacion extends javax.swing.JFrame {
 
     private void Prefija() {
         String entrada = this.txInfija.getText();
+        entrada = agregarMultiplicacion(entrada);
 
         StringBuilder resultado = new StringBuilder();
         StringBuilder inversaEntrada = new StringBuilder(entrada).reverse();
@@ -303,6 +308,20 @@ public class VistaNotacion extends javax.swing.JFrame {
         // Invertir el resultado para obtener la notación prefija
         this.txPrefija.setText(resultado.reverse().toString());
 
+    }
+
+    private String agregarMultiplicacion(String expresion) {
+        StringBuilder nuevaExpresion = new StringBuilder();
+        for (int i = 0; i < expresion.length(); i++) {
+            char actual = expresion.charAt(i);
+            nuevaExpresion.append(actual);
+
+            if ((Character.isDigit(actual) || Character.isLetter(actual)) && i + 1 < expresion.length() && expresion.charAt(i + 1) == '(') {
+                nuevaExpresion.append('*');
+
+            }
+        }
+        return nuevaExpresion.toString();
     }
 
     private void btnConvertirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertirActionPerformed
